@@ -1,0 +1,34 @@
+<table class="table" th:fragment="'table">
+    <thead class="black white-text">
+    <tr>
+        <th scope="col" th:text="#{article.identifier}">#</th>
+        <th scope="col" th:text="#{article.title.label}">Title</th>
+        <th scope="col" th:text="#{article.description.label}">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col" th:text="#{article.author.label}">Author</th>
+        <th scope="col" th:text="#{article.thumbnail.label}">Thumbnail</th>
+        <th scope="col" colspan="3"  th:text="#{article.action}">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="art:${articles}">
+        <th style="vertical-align: inherit;" th:text="${art.getId()}"></th>
+        <th style="vertical-align: inherit;" th:text="${art.getTitle()}"></th>
+        <td style="vertical-align: inherit;" th:text="${art.getDesc()}"></td>
+        <td style="vertical-align: inherit;" th:text="${art.getCategory().getName()}"></td>
+        <td style="vertical-align: inherit;" th:text="${art.getAuthor()}"></td>
+        <td>
+            <img style="width: 100px;" th:src="@{/image/{id}(id=${art.getThumbnail()} ) }">
+        </td>
+        <td style="vertical-align: inherit;width: 1px;padding-right: 0;padding-left: 0;">
+            <a th:href="@{/update/{id}(id=${art.getId()})}" type="button" class="btn btn-success" th:text="#{article.update.label}">Update</a>
+        </td>
+        <td style="vertical-align: inherit;width: 1px;padding-right: 0;padding-left: 0;">
+            <a th:href="@{/view/{id}(id=${art.getId()})}" type="button" class="btn btn-warning" th:text="#{article.view.label}">View</a>
+        </td>
+        <td style="vertical-align: inherit;width: 1px;padding-right: 0;padding-left: 0;">
+            <a type="button" class="btn btn-danger" th:text="#{article.delete.label}" th:onclick="|deleteme(${art.getId()})|">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

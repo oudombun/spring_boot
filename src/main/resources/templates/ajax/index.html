@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/master">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <input id="page" type="text">
+    <input id="submit" type="button" th:value="submit" th:id="submits">
+    <div id="tableajax">
+
+    </div>
+</div>
+
+<script>
+    alert("")
+    $(document).ready(function () {
+        $.ajax({
+            url:"/ajax/table",
+            type:"GET",
+            success:function (res) {
+                console.log(res)
+                alert("seucc")
+            },
+            error:function (err) {
+                alert("err")
+                console.log(err)
+            }
+        });
+    });
+</script>
+</body>
+</html>
